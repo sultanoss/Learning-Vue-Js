@@ -21,15 +21,26 @@
 </head>
 
 <body>
-  <div id='content'>
-    <div class="d-flex justify-content-around align-items-center bg-dark p-3">
-      <h1 class='text-white'>Learn Vue js</h1>
+  <div
+    class="d-flex flex-column align-items-center "
+    id='content'
+  >
+    <div
+      class="d-flex align-items-center bg-dark p-3"
+      style='width: 100%;'
+    >
+      <div
+        class='d-flex justify-content-center align-items-center rounded'
+        style='width: 200px;'
+      >
+        <span class='text-bold p-2 text-white'>Simple - CRM</span>
+      </div>
     </div>
 
 
     <button
       type="button"
-      class="btn btn-primary m-3"
+      class="btn btn-primary m-3 btn-lg"
       data-toggle="modal"
       data-target="#exampleModal"
     >
@@ -81,7 +92,7 @@
                   placeholder="Vor-Nachname"
                   aria-label="Username"
                   aria-describedby="basic-addon1"
-                  ref="my_input1"
+                  v-model="fullName"
                 >
               </div>
 
@@ -98,7 +109,7 @@
                   placeholder="Adresse"
                   aria-label="Username"
                   aria-describedby="basic-addon1"
-                  ref="my_input2"
+                  v-model="adress"
                 >
               </div>
 
@@ -109,7 +120,7 @@
                   placeholder="Recipient's username"
                   aria-label="Recipient's username"
                   aria-describedby="basic-addon2"
-                  ref="my_input3"
+                  v-model="email"
                 >
                 <div class="input-group-append">
                   <span
@@ -135,30 +146,58 @@
 
 
     <table
-      class="table table-dark mx-auto"
+      class="table table-dark mx-auto table-bg"
       style='width: 80%;'
     >
       <thead>
-        <tr>
-          <th scope="col">#</th>
+        <tr class='bg-dark'>
+          <th
+            scope="col"
+            class='text-center'
+          >User</th>
           <th scope="col">Vor-Nachname</th>
           <th scope="col">Adresse</th>
           <th scope="col">E-Mail</th>
+          <th scope="col"></th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for='data in userData'>
-          <th scope="row">1</th>
-          <td>{{ data.jsonData.fullName }}</td>
-          <td>{{ data.jsonData.adress }}</td>
-          <td>{{ data.jsonData.email }}</td>
+        <tr
+          v-for='(data, index ) in userData'
+          :class="{bgRed:data.marked}"
+          data-bs-toggle="tooltip"
+          data-bs-placement="top"
+          title="Tooltip on top"
+        >
+          <th
+            scope="row"
+            class='text-center'
+          >{{ index + 1 }}</th>
+          <td @click="markUser(data)">{{ data.fullName }}</td>
+          <td @click="markUser(data)">{{ data.adress }}</td>
+          <td @click="markUser(data)">{{ data.email }}</td>
+
+          <td><i
+              class="bi bi-pen"
+              data-toggle="modal"
+              data-target="#exampleModal"
+            ></i></td>
+
+          <td class='text-center'><i
+              class="bi bi-trash icon-black"
+              @click='deleteUser(index)'
+            ></i></td>
         </tr>
-        <tr>
+
       </tbody>
     </table>
-
-  </div>
-
+    <div class="d-flex justify-content-center align-items-center">
+      <p
+        class='m-0 p-3 bg-info rounded text-white'
+        v-if="userData.length === 0"
+      >keine Users Vorhanden !</p>
+    </div>
   </div>
 
 
@@ -184,7 +223,6 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"
   ></script>
-  <script src="bootstrap-autocomplete.min.js"></script>
 </body>
 
 </html>

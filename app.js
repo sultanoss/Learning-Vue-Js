@@ -1,33 +1,36 @@
 const app = Vue.createApp({
   data() {
     return {
-      userData: []
+      userData: [],
+      marked: false,
+      userdetails: {},
+      fullName:'',
+      adress:'',
+      email:'',
     }
   },
 
   methods: {
     getFormValues() {
-      this.fullName = this.$refs.my_input1.value;
-      this.adress = this.$refs.my_input2.value;
-      this.email = this.$refs.my_input3.value;
-
-      let jsonData = {
+      this.userdetails = {
         fullName: this.fullName,
-        adress:this.adress,
-        email:this.email,
+        adress: this.adress,
+        email: this.email,
+        marked: false,
       }
-      this.userData.push({
-        jsonData
-      });
-      this.$refs.my_input1.value = '';
-      this.$refs.my_input2.value = '';
-      this.$refs.my_input3.value = '';
-    }
-  },
-  watch:{
-  
-  },
+      this.userData.push(this.userdetails);
+      this.fullName = '';
+      this.adress = '';
+      this.email = '';
+    },
+    deleteUser(index) {
+      this.userData.splice(index, 1);
+    },
 
+    markUser(data) {
+      data.marked = !data.marked;
+    },
+  },
 });
 
 app.mount('#content');

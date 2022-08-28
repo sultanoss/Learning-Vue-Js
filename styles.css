@@ -1,3 +1,45 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css");
+
 body {
   margin: 0;
+  background-color: #fafafa;
+}
+
+.table-bg {
+  background-color: #007bff;
+}
+th,
+.table-dark thead th {
+  border-color: #fff;
+}
+.table-dark td, .table-dark th, .table-dark thead th {
+  font-weight: 600;
+  border-color: #fff;
+  cursor: pointer;
+}
+.icon-black{
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+}
+
+.bgRed{
+  background-color: #ff0014;
+}
+
+.overlay{
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: #090909;
+  opacity: 0.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-bold{
+  font-weight: bold;
+  font-size: 22px;
 }
