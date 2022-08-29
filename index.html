@@ -55,6 +55,7 @@
       role="dialog"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
+      ref="modal"
     >
       <div
         class="modal-dialog"
@@ -159,7 +160,6 @@
           <th scope="col">Adresse</th>
           <th scope="col">E-Mail</th>
           <th scope="col"></th>
-          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -178,11 +178,10 @@
           <td @click="markUser(data)">{{ data.adress }}</td>
           <td @click="markUser(data)">{{ data.email }}</td>
 
-          <td><i
+          <!-- <td><i
               class="bi bi-pen"
-              data-toggle="modal"
-              data-target="#exampleModal"
-            ></i></td>
+              @click="editUser(data)"
+            ></i></td> -->
 
           <td class='text-center'><i
               class="bi bi-trash icon-black"

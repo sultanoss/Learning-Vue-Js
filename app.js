@@ -4,9 +4,9 @@ const app = Vue.createApp({
       userData: [],
       marked: false,
       userdetails: {},
-      fullName:'',
-      adress:'',
-      email:'',
+      fullName: '',
+      adress: '',
+      email: '',
     }
   },
 
@@ -30,6 +30,19 @@ const app = Vue.createApp({
     markUser(data) {
       data.marked = !data.marked;
     },
+
+    editUser(data) {
+      this.fullName = data.fullName,
+        this.adress = data.adress,
+        this.email = data.email,
+        $("#exampleModal").modal('show');
+      console.log('sss')
+    },
+
+    saveData(){
+      this.fullName = this.fullName,
+      console.log(this.fullName)
+    }
   },
 });
 
